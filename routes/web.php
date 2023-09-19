@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShowProfile;
+use App\Models\Address;
+use App\Models\User;
+use Carbon\Factory;
+use Faker\Factory as FakerFactory;
+use Illuminate\Database\Eloquent\Factories\Factory as FactoriesFactory;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    // return view('pages.index');
+    
+    // $users = User::factory()->count(30)->create();
+    $address = Address::factory()->count(30)->create();
+    return "done";
 });
 Route::get('/test', function () {
     return view('posts.test');
