@@ -47,6 +47,7 @@ class User extends Authenticatable
 
        // for one to one relation with user 
        public function address(){
-        return $this->hasOne('Address');
+
+        return $this->hasOne('App\Models\Address');
        }
 }

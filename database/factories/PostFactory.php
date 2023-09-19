@@ -17,7 +17,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->title(),
+            'content' => fake()->realText($maxNbChars = 200, $indexSize = 2),
         ];
     }
 }

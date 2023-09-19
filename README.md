@@ -153,3 +153,75 @@ $loop->last
 $loop->count
 $loop->parent
 $loop->iteration,......
+ ////////////////////////////////////////////////////////////////////////////////////////////35 36 factory
+ php artisan make:factory AddressFactory
+
+  return [
+            'city' => fake()->city(),
+            'address' => fake()->address(),
+            'postal_code' => Str::random(10),
+            'user_id' => function(){
+                return  User::factory()->create()->id;
+            },
+        ];
+
+config->app->search "faker"->'faker_locale' => 'fa_IR',
+
+
+for execute:
+     $users = User::factory()->count(30)->create();
+     $address = Address::factory()->count(30)->create();
+
+//////////////////////////////////////////////////////////////////////////////////61 one to one relationship
+
+user->address
+
+in address migration:
+    $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+in address model:
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
+in user model:
+    public function address(){
+        return $this->hasOne('App\Models\Address');
+    }
+
+in controller:
+    $user = User::find(62);
+    dd($user->address);
+
+    $address = Address::find(2);
+    dd($address->user);
+
+
+//////////////////////////////////////////////////////////////////////////////////62 one to many relationship
+post->images
+
+in images migration:
+    $table->foreignId('post_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+in image model:
+    public function post(){
+        return $this->belongsTo('App\Models\Post');
+    }
+
+in post model:
+    public function images(){
+        return $this->hasMany('App\Models\Image');
+    }
+
+in controller:
+    $post = Post::find(60);
+    dd($post->images);
+
+    $image = Image::find(1);
+    dd($image->post->title);
+
+show only post with images:
+    $posts = Post::has('images')->get();
+
+assocate for insert post_id value in image table if null
+dessocate for null post_id value in image table 

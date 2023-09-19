@@ -3,6 +3,8 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShowProfile;
 use App\Models\Address;
+use App\Models\Image;
+use App\Models\Post;
 use App\Models\User;
 use Carbon\Factory;
 use Faker\Factory as FakerFactory;
@@ -24,9 +26,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return view('pages.index');
     
+    //for factory insert
     // $users = User::factory()->count(30)->create();
-    $address = Address::factory()->count(30)->create();
-    return "done";
+    // $address = Address::factory()->count(30)->create();
+    // $post = Post::factory()->count(30)->create();
+    // $image = Image::factory()->count(30)->create();
+
+    // $user = User::find(62);
+    // dd($user->address);
+
+    // $address = Address::find(2);
+    // dd($address->user);
+    
+    // $post = Post::find(60);
+    // dd($post->images);
+
+    // $image = Image::find(1);
+    // dd($image->post->title);
+
+    $posts = Post::has('images')->get();
+    dd($posts);
 });
 Route::get('/test', function () {
     return view('posts.test');
