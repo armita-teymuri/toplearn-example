@@ -27,10 +27,10 @@ Route::get('/', function () {
     // return view('pages.index');
     
     //for factory insert
-    // $users = User::factory()->count(30)->create();
-    // $address = Address::factory()->count(30)->create();
-    // $post = Post::factory()->count(30)->create();
-    // $image = Image::factory()->count(30)->create();
+    $users = User::factory()->count(30)->create();
+    $address = Address::factory()->count(30)->create();
+    $post = Post::factory()->count(30)->create();
+    $image = Image::factory()->count(30)->create();
 
     // $user = User::find(62);
     // dd($user->address);
@@ -44,8 +44,11 @@ Route::get('/', function () {
     // $image = Image::find(1);
     // dd($image->post->title);
 
-    $posts = Post::has('images')->get();
-    dd($posts);
+    // $posts = Post::has('images')->get();
+    // dd($posts);
+
+    $user = User::find(1);
+    dd($user->info);
 });
 Route::get('/test', function () {
     return view('posts.test');

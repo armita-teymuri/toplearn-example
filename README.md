@@ -225,3 +225,24 @@ show only post with images:
 
 assocate for insert post_id value in image table if null
 dessocate for null post_id value in image table 
+
+
+/////////////////////////////////////////////////////////////////////////////63 has one through relationship
+user->car->carInformation
+     1    1    
+
+
+in car mifration:
+    $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+in CarInfo migration:
+    $table->foreignId('car_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
+
+in user model:
+    public function info(){
+        return $this->hasOneThrough('App\Models\CarInfo','App\Models\Car');
+    }
+
+in conroller:
+    $user = User::find(1);
+    dd($user->info);

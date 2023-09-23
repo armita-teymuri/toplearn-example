@@ -45,9 +45,14 @@ class User extends Authenticatable
     ];
 
 
-       // for one to one relation with user 
+    // for one to one relation with user 
        public function address(){
 
         return $this->hasOne('App\Models\Address');
        }
+
+    // for one through relation with user 
+        public function info(){
+            return $this->hasOneThrough('App\Models\CarInfo','App\Models\Car');
+        }
 }
