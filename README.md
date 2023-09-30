@@ -175,6 +175,7 @@ for execute:
 //////////////////////////////////////////////////////////////////////////////////61 one to one relationship
 
 user->address
+    1
 
 in address migration:
     $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
@@ -199,6 +200,7 @@ in controller:
 
 //////////////////////////////////////////////////////////////////////////////////62 one to many relationship
 post->images
+    ∞
 
 in images migration:
     $table->foreignId('post_id')->constrained()->onUpdate('cascade')->onDelete('cascade')->nullable();
@@ -246,3 +248,28 @@ in user model:
 in conroller:
     $user = User::find(1);
     dd($user->info);
+
+/////////////////////////////////////////////////////////////////////////////64 has many through relationship
+contry->users->posts
+       ∞      ∞
+
+in contry Model:
+    public function posts(){
+        return $this->hasManyThrough('App\Models\Post','App\Models\User');
+    }
+
+in User model:
+    public function posts(){
+        return $this->hasMany('App\Models\Post');
+    }
+
+in post model:
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+in controller:
+    $country = Country::find(1);
+    dd($country->posts);
+
+    $user = User::find(4);
+    dd($user->posts);

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ShowProfile;
 use App\Models\Address;
+use App\Models\Country;
 use App\Models\Image;
 use App\Models\Post;
 use App\Models\User;
@@ -47,8 +48,14 @@ Route::get('/', function () {
     // $posts = Post::has('images')->get();
     // dd($posts);
 
-    $user = User::find(1);
-    dd($user->info);
+    // $user = User::find(1);
+    // dd($user->info);
+
+    // $country = Country::find(1);
+    // dd($country->posts);
+
+    $user = User::find(4);
+    dd($user->posts);
 });
 Route::get('/test', function () {
     return view('posts.test');
