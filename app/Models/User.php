@@ -55,4 +55,6 @@ class User extends Authenticatable
         public function info(){
             return $this->hasOneThrough('App\Models\CarInfo','App\Models\Car');
         }
+
+        
 }

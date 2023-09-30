@@ -27,10 +27,10 @@ Route::get('/', function () {
     // return view('pages.index');
     
     //for factory insert
-    $users = User::factory()->count(30)->create();
-    $address = Address::factory()->count(30)->create();
-    $post = Post::factory()->count(30)->create();
-    $image = Image::factory()->count(30)->create();
+    // $users = User::factory()->count(30)->create();
+    // $address = Address::factory()->count(30)->create();
+    // $post = Post::factory()->count(30)->create();
+    // $image = Image::factory()->count(30)->create();
 
     // $user = User::find(62);
     // dd($user->address);
