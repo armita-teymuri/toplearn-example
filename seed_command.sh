@@ -6,3 +6,6 @@ php artisan db:seed --class=CarInfoSeeder
 php artisan db:seed --class=AddressSeeder
 php artisan db:seed --class=ImageSeeder
 php artisan db:seed --class=PostSeeder
+php artisan db:seed --class=TagSeeder
+php artisan db:seed --class=ProductSeeder
+php artisan db:seed --class=ProductTagSeeder

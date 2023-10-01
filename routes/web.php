@@ -6,6 +6,8 @@ use App\Models\Address;
 use App\Models\Country;
 use App\Models\Image;
 use App\Models\Post;
+use App\Models\Product;
+use App\Models\Tag;
 use App\Models\User;
 use Carbon\Factory;
 use Faker\Factory as FakerFactory;
@@ -54,8 +56,29 @@ Route::get('/', function () {
     // $country = Country::find(1);
     // dd($country->posts);
 
-    $user = User::find(4);
-    dd($user->posts);
+    // $user = User::find(4);
+    // dd($user->posts);
+
+    // $tags = Tag::find(1);
+    // dd($tags->products);
+
+    // $product = Product::find(1);
+    // dd($product->tags);
+
+    // $product = Product::find(1);
+    // $product->tags()->attach([1,2]);
+    // dd($product->tags);
+
+    // $product = Product::find(1);
+    // $product->tags()->detach([4]);
+    // dd($product->tags);
+
+    // $product = Product::find(1);
+    // $product->tags()->sync([4]);
+    // dd($product->tags);
+
+    $product = Product::find(1);
+    dd( $product->tags()->first()->pivot->value);
 });
 Route::get('/test', function () {
     return view('posts.test');

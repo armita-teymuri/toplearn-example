@@ -273,3 +273,56 @@ in controller:
 
     $user = User::find(4);
     dd($user->posts);
+
+
+/////////////////////////////////////////////////////////////////////////////64 many to many relationship with pivot table
+tag<->product
+    ∞
+
+we need a pivot table with 3 filed: tag_id product_id timestamps
+
+in tag model:
+    public function products(){
+        return $this->belongsToMany('App\Models\Product');
+    }
+
+in product_model:
+    public function tags(){
+        return $this->belongsToMany('App\Models\Tag');
+    }
+
+in product tag model for change table name:
+    protected $table = 'product_tag';
+
+in controller:
+    $tags = Tag::find(1);
+    dd($tags->products);
+
+    $product = Product::find(1);
+    dd($product->tags);
+
+/////////////////////////////////////////////////////////////////////////////64 many to many relationship 
+attach detach withpivot pivot sync method
+
+
+use tag relation and give to product tag 1
+    $product = Product::find(1);
+    $product->tags()->attach([1,2]);
+    dd($product->tags);
+
+remove tag from post
+    $product = Product::find(1);
+    $product->tags()->detach([4]);
+    dd($product->tags);
+
+remove all last tag and give tag number 4 to product
+    $product = Product::find(1);
+    $product->tags()->detach([4]);
+    dd($product->tags);
+
+
+if yoyr pivot table has a other filed like "value" we need to know to  poroduct and tag model:
+   return $this->belongsToMany('App\Models\Tag')->withPivot('value');
+now in controller for aaccess "value" :
+    $product = Product::find(1);
+    dd( $product->tags()->first()->pivot->value);
