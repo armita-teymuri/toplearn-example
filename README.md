@@ -275,7 +275,7 @@ in controller:
     dd($user->posts);
 
 
-/////////////////////////////////////////////////////////////////////////////64 many to many relationship with pivot table
+/////////////////////////////////////////////////////////////////////////////65 many to many relationship with pivot table
 tag<->product
     ∞
 
@@ -301,7 +301,7 @@ in controller:
     $product = Product::find(1);
     dd($product->tags);
 
-/////////////////////////////////////////////////////////////////////////////64 many to many relationship 
+/////////////////////////////////////////////////////////////////////////////66 many to many relationship 
 attach detach withpivot pivot sync method
 
 
@@ -326,3 +326,44 @@ if yoyr pivot table has a other filed like "value" we need to know to  poroduct 
 now in controller for aaccess "value" :
     $product = Product::find(1);
     dd( $product->tags()->first()->pivot->value);
+
+
+
+/////////////////////////////////////////////////////////////////////////////67 polymorphyce one to one
+post->video
+     1
+product->video
+       1
+car->video
+    1
+
+in video migration:
+    $table->id();
+    $table->string('url');
+    $table->integer('videoable_id');
+    $table->string('videoable_type');
+    $table->timestamps();
+
+
+in video model:
+    public function videoable(){
+        return $this->morphTo();
+    }
+
+in post and product model:
+    public function video(){
+        return $this->morphOne('App\Models\Video','videoable');
+    }
+
+in controller:
+    $product = Product::find(1);
+    dd( $product->video);
+
+    $post = Post::find(1);
+    dd( $post->video);
+
+    $video = Video::find(1);
+    dd( $video->videoable);
+
+
+

@@ -16,4 +16,8 @@ class Post extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+    //for one to one polymorphic with video model
+    public function video(){
+        return $this->morphOne('App\Models\Video','videoable');
+    }
 }

@@ -14,4 +14,8 @@ class Product extends Model
         //if we have other field in pivot table
         // return $this->belongsToMany('App\Models\Tag')->withPivot('value');
     }
+    //for one to one polymorphic with video model
+     public function video(){
+        return $this->morphOne('App\Models\Video','videoable');
+    }
 }
