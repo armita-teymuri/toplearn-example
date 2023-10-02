@@ -11,3 +11,5 @@ php artisan db:seed --class=ProductSeeder
 php artisan db:seed --class=ProductTagSeeder
 php artisan db:seed --class=VideoSeeder
 php artisan db:seed --class=NewsSeeder
+php artisan db:seed --class=CategorySeeder
+php artisan db:seed --class=CategoryablesSeeder

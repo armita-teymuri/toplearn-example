@@ -406,3 +406,41 @@ in controller:
         $news->content="news number 2";
         $post->news()->save($news);
         dd( $post->news);
+
+
+/////////////////////////////////////////////////////////////////////////////69 polymorphyce many to many
+post<->category
+     ∞
+product<->category
+       ∞
+
+we need 4 tables: post product categories categoryables
+
+in category migration:
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+
+in categoryables:
+    $table->integer('category_id');
+    $table->integer('categoryable_id');
+    $table->string('categoryable_type');
+    $table->timestamps();
+
+
+in post and product model:
+    public function categories(): MorphToMany
+    {
+        return $this->morphToMany(Category::class, 'categoryable');
+    }
+in category model:
+    public function posts(): MorphToMany
+    {
+        return $this->morphedByMany(Post::class, 'categoryable');
+    }
+ 
+    public function products(): MorphToMany
+    {
+        return $this->morphedByMany(Product::class, 'categoryable');
+    }
+

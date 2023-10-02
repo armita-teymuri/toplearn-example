@@ -96,11 +96,19 @@ Route::get('/', function () {
     // $news = News::find(1);
     // dd( $news->newsable);
 
-     $post = Post::find(1);
-     $news = new News;
-     $news->content="news number 2";
-     $post->news()->save($news);
-     dd( $post->news);
+    //  $post = Post::find(1);
+    //  $news = new News;
+    //  $news->content="news number 2";
+    //  $post->news()->save($news);
+    //  dd( $post->news);
+
+
+    // $post = Post::find(1);
+    // dd( $post->categories);
+
+    $product = Product::find(1);
+    dd( $product->categories);
+
 });
 Route::get('/test', function () {
     return view('posts.test');
