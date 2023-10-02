@@ -10,3 +10,4 @@ php artisan db:seed --class=TagSeeder
 php artisan db:seed --class=ProductSeeder
 php artisan db:seed --class=ProductTagSeeder
 php artisan db:seed --class=VideoSeeder
+php artisan db:seed --class=NewsSeeder

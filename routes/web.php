@@ -5,11 +5,11 @@ use App\Http\Controllers\ShowProfile;
 use App\Models\Address;
 use App\Models\Country;
 use App\Models\Image;
+use App\Models\News;
 use App\Models\Post;
 use App\Models\Product;
 use App\Models\Tag;
 use App\Models\User;
-use App\Models\Video;
 use Carbon\Factory;
 use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory as FactoriesFactory;
@@ -86,12 +86,21 @@ Route::get('/', function () {
 
     // $post = Post::find(1);
     // dd( $post->video);
+    
+    // $product = Product::find(1);
+    // dd( $product->news);
 
-      // $product = Product::find(1);
-    // dd( $product->video);
+    // $post = Post::find(1);
+    // dd( $post->news);
 
-    $video = Video::find(1);
-    dd( $video->videoable);
+    // $news = News::find(1);
+    // dd( $news->newsable);
+
+     $post = Post::find(1);
+     $news = new News;
+     $news->content="news number 2";
+     $post->news()->save($news);
+     dd( $post->news);
 });
 Route::get('/test', function () {
     return view('posts.test');

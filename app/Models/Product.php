@@ -18,4 +18,9 @@ class Product extends Model
      public function video(){
         return $this->morphOne('App\Models\Video','videoable');
     }
+
+    //for one to many polymorphic with news model
+    public function news(){
+        return $this->morphMany('App\Models\News','newsable');
+    }
 }

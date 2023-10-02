@@ -365,5 +365,44 @@ in controller:
     $video = Video::find(1);
     dd( $video->videoable);
 
+/////////////////////////////////////////////////////////////////////////////68 polymorphyce one to many
+post->news
+    ∞
+product->news
+       ∞
 
 
+in news migration:
+    $table->id();
+    $table->string('content');
+    $table->integer('newsable_id');
+    $table->string('newsable_type');
+    $table->timestamps();
+
+
+in news model:
+    public function newsable(){
+        return $this->morphTo();
+    }
+
+in post and product model:
+    public function news(){
+        return $this->morphMany('App\Models\News','newsable');
+    }
+
+in controller:
+    $product = Product::find(1);
+    dd( $product->news);
+
+    $post = Post::find(1);
+    dd( $post->news);
+
+    $news = News::find(1);
+    dd( $news->newsable);
+
+    insert news for post 1:
+        $post = Post::find(1);
+        $news = new News;
+        $news->content="news number 2";
+        $post->news()->save($news);
+        dd( $post->news);
