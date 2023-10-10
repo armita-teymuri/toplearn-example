@@ -250,29 +250,51 @@ in conroller:
     dd($user->info);
 
 /////////////////////////////////////////////////////////////////////////////64 has many through relationship
-contry->users->posts
+contry->province->city
        ∞      ∞
 
 in contry Model:
-    public function posts(){
-        return $this->hasManyThrough('App\Models\Post','App\Models\User');
+    public function cities(): HasManyThrough
+    {
+        return $this->hasManyThrough(City::class, Province::class);
     }
 
-in User model:
-    public function posts(){
-        return $this->hasMany('App\Models\Post');
+in province model:
+    public function cities(): HasMany
+    {
+        return $this->hasMany(City::class);
     }
 
-in post model:
-    public function user(){
-        return $this->belongsTo('App\Models\User');
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+in city model:
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
     }
 in controller:
-    $country = Country::find(1);
-    dd($country->posts);
+    //country->cities
+    // $country = Country::find(103);
+    // dd($country->cities->name);
 
-    $user = User::find(4);
-    dd($user->posts);
+    //city->province
+    // $citey = City::find(1);
+    // dd($citey->province);
+
+    //province->cities
+    // $province = Province::find(1);
+    // dd($province->cities);
+
+    //province->country
+    // $province = Province::find(1);
+    // dd($province->country);
+
+    // city->country
+    // $citey = City::find(1);
+    // dd($citey->province->country);
 
 
 /////////////////////////////////////////////////////////////////////////////65 many to many relationship with pivot table

@@ -4,11 +4,11 @@
 
 @section('content')
   welcome index 
-@forelse ($collection as $item)
+{{-- @forelse ($collection as $item)
     
 @empty
     
-@endforelse
+@endforelse --}}
 @endsection
 
 {{-- @yield('name',view::make('viwe-name')) --}}

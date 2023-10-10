@@ -15,6 +15,7 @@ use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory as FactoriesFactory;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\MessageBag;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('pages.index');
+    // return view('welcome');
+    //  return view('pages.index');
     
     //for factory insert
     // $users = User::factory()->count(30)->create();
@@ -59,6 +61,9 @@ Route::get('/', function () {
 
     // $user = User::find(4);
     // dd($user->posts);
+
+    // $user= User::find(1);
+    // dd($user->Country);
 
     // $tags = Tag::find(1);
     // dd($tags->products);
@@ -106,12 +111,16 @@ Route::get('/', function () {
     // $post = Post::find(1);
     // dd( $post->categories);
 
-    $product = Product::find(1);
-    dd( $product->categories);
+    // $product = Product::find(1);
+    // dd( $product->categories);
 
 });
 Route::get('/test', function () {
-    return view('posts.test');
+    // return redirect('register')->withErrors($validator, 'login');
+
+
+    
+    //return view('posts.test')->withErrors(['error','somwthing wrong']);
 });
 
 
